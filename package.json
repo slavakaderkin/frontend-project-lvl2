@@ -7,7 +7,7 @@
     "gendiff"
   ],
   "bin": {
-    "gendiff": "dist/bin/gendiff.js",
+    "gendiff": "dist/bin/gendiff.js"
   },
   "files": [
     "dist"
