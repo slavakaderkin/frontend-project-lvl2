@@ -11,10 +11,6 @@ program
   .option('-f, --format [type]', 'Output format')
   .arguments('<firstConfig> <secondConfig>')
   .action((firstConfig, secondConfig) => {
-    if (firstConfig === 'undefined' || secondConfig === 'undefined') {
-      console.error('no given arguments');
-      process.exit(1);
-    }
     console.log(genDiff(firstConfig, secondConfig));
   })
   .parse(process.argv);
