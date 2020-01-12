@@ -8,6 +8,7 @@ export default (path1, path2) => {
 
   const result = keys.reduce((acc, currentKey) => {
     if (has(afterData, currentKey) && has(afterData, currentKey)) {
+      // eslint-disable-next-line eqeqeq
       return (beforeData[currentKey] == afterData[currentKey])
         ? [...acc, `  ${currentKey}: ${afterData[currentKey]}`]
         : [...acc, `+ ${currentKey}: ${afterData[currentKey]}\n- ${currentKey}: ${beforeData[currentKey]}`];
