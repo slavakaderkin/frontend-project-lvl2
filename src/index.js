@@ -11,12 +11,12 @@ export default (path1, path2) => {
       // eslint-disable-next-line eqeqeq
       return (beforeData[currentKey] == afterData[currentKey])
         ? [...acc, `  ${currentKey}: ${afterData[currentKey]}`]
-        : [...acc, `+ ${currentKey}: ${afterData[currentKey]}\n- ${currentKey}: ${beforeData[currentKey]}`];
+        : [...acc, `+ ${currentKey}: ${afterData[currentKey]}\n - ${currentKey}: ${beforeData[currentKey]}`];
     }
     if (has(afterData, currentKey)) {
       return [...acc, `+ ${currentKey}: ${afterData[currentKey]}`];
     }
     return [...acc, `- ${currentKey}: ${beforeData[currentKey]}`];
   }, []);
-  return `{\n${result.join('\n')}\n}`;
+  console.log(`{\n ${result.join('\n ')}\n}`);
 };
