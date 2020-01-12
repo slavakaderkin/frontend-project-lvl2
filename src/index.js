@@ -18,5 +18,5 @@ export default (path1, path2) => {
     }
     return [...acc, `- ${currentKey}: ${beforeData[currentKey]}`];
   }, []);
-  console.log(`{\n ${result.join('\n ')}\n}`);
+  return `{\n ${result.join('\n ')}\n}`;
 };
