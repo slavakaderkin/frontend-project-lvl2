@@ -9,6 +9,7 @@
   "bin": {
     "gendiff": "dist/bin/gendiff.js"
   },
+  "main": "dist/index.js",
   "files": [
     "dist"
   ],
