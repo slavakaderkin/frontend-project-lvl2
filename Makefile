@@ -1,6 +1,9 @@
 install-deps:
 	npm install
 
+run: 
+	npx babel-node 'src/index.js'
+
 install: install-deps
 
 publish:
