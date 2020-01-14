@@ -8,7 +8,6 @@ export default (pathToFile) => {
   if (expansion === '.yml') {
     return yaml.safeLoad(fs.readFileSync(fs.realpathSync(pathToFile)));
   }
-  if (expansion === '.json') {
-    return JSON.parse(fs.readFileSync(fs.realpathSync(pathToFile)));
-  }
+
+  return JSON.parse(fs.readFileSync(fs.realpathSync(pathToFile)));
 };
