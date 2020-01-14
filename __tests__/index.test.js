@@ -9,10 +9,10 @@ const afterYml = `${__dirname}/__fixtures__/after.yml`;
 
 const result = fs.readFileSync(`${__dirname}/__fixtures__/result.txt`, 'utf-8');
 
-test('gendiff json', () => {
+test('gendiff json flat', () => {
   expect(gendiff(beforeJson, afterJson)).toBe(result);
 });
 
-test('gendiff yml', () => {
+test('gendiff yml flat', () => {
   expect(gendiff(beforeYml, afterYml)).toBe(result);
 });
