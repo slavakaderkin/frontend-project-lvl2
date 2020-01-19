@@ -1,32 +1,21 @@
 import fc from 'fs';
 import genDiff from '../src';
 
+const pathToJsonBeforeFile = `${__dirname}/__fixtures__/before.json`;
+const pathToJsonAfterFile = `${__dirname}/__fixtures__/after.json`;
+const pathToIniBeforeFile = `${__dirname}/__fixtures__/before.ini`;
+const pathToIniAfterFile = `${__dirname}/__fixtures__/after.ini`;
+const pathToYmlBeforeFile = `${__dirname}/__fixtures__/before.yml`;
+const pathToymlAfterFile = `${__dirname}/__fixtures__/after.yml`;
+
 const result = fc.readFileSync(`${__dirname}/__fixtures__/result.txt`, 'utf-8');
-const pathToFixtures = `${__dirname}/__fixtures__`;
 
-test('test genDiff json', () => {
-  const beforeJsonPath = `${pathToFixtures}/before.json`;
-  const afterJsonPath = `${pathToFixtures}/after.json`;
+test.each([
+  [pathToJsonBeforeFile, pathToJsonAfterFile, result],
+  [pathToIniBeforeFile, pathToIniAfterFile, result],
+  [pathToYmlBeforeFile, pathToymlAfterFile, result],
+])('test genDiff', (a, b, expected) => {
+  const actual = genDiff(a, b);
 
-  const actual = genDiff(beforeJsonPath, afterJsonPath);
-
-  expect(actual).toBe(result);
-});
-
-test('test genDiff yml', () => {
-  const beforeYmlPath = `${pathToFixtures}/before.yml`;
-  const afterYmlPath = `${pathToFixtures}/after.yml`;
-
-  const actual = genDiff(beforeYmlPath, afterYmlPath);
-
-  expect(actual).toBe(result);
-});
-
-test('test genDiff ini', () => {
-  const beforeIniPath = `${pathToFixtures}/before.ini`;
-  const afterIniPath = `${pathToFixtures}/after.ini`;
-
-  const actual = genDiff(beforeIniPath, afterIniPath);
-
-  expect(actual).toBe(result);
+  expect(actual).toBe(expected);
 });
