@@ -11,14 +11,20 @@ const objectToString = (object, depth) => {
 
 const stringify = (value, depth) => (isObject(value) ? objectToString(value, depth) : value);
 
+const toString = (key, value, depth, sign) => {
+  const formattedValue = stringify(value, depth);
+  return `${tab(depth + 1)}${sign} ${key}: ${formattedValue}`;
+};
+
+
 const propertyActions = [
   {
     check: (object) => object.type === 'unchanged',
-    process: (object, depth) => (`${tab(depth + 2)}${object.key}: ${stringify(object.value, depth)}`),
+    process: (object, depth) => (`${toString(object.key, object.value, depth, ' ')}`),
   },
   {
     check: (object) => object.type === 'changed',
-    process: (object, depth) => (`${tab(depth + 1)}+ ${object.key}: ${stringify(object.newValue, depth)}\n${tab(depth + 1)}- ${object.key}: ${stringify(object.oldValue, depth)}`),
+    process: (object, depth) => (`${toString(object.key, object.newValue, depth, '+')}\n${toString(object.key, object.oldValue, depth, '-')}`),
   },
   {
     check: (object) => object.type === 'parrent',
@@ -26,11 +32,11 @@ const propertyActions = [
   },
   {
     check: (object) => object.type === 'added',
-    process: (object, depth) => (`${tab(depth + 1)}+ ${object.key}: ${stringify(object.value, depth)}`),
+    process: (object, depth) => (`${toString(object.key, object.value, depth, '+')}`),
   },
   {
     check: (object) => object.type === 'deleted',
-    process: (object, depth) => (`${tab(depth + 1)}- ${object.key}: ${stringify(object.value, depth)}`),
+    process: (object, depth) => (`${toString(object.key, object.value, depth, '-')}`),
   },
 ];
 
