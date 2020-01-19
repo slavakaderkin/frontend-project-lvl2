@@ -7,4 +7,4 @@ const formatters = {
   json: JSON.stringify,
 };
 
-export default (ast, format = 'signs') => formatters[format](ast, null, 4);
+export default (ast, format = 'signs') => formatters[format](ast);
