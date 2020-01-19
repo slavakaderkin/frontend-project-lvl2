@@ -11,32 +11,32 @@ const objectToString = (object, depth) => {
 
 const stringify = (value, depth) => (isObject(value) ? objectToString(value, depth) : value);
 
-const toString = (key, value, depth, sign) => {
-  const formattedValue = stringify(value, depth);
-  return `${tab(depth + 1)}${sign} ${key}: ${formattedValue}`;
-};
-
+const toString = (key, value, depth, sign) => `${tab(depth + 1)}${sign} ${key}: ${stringify(value, depth)}`;
 
 const propertyActions = [
   {
     check: (object) => object.type === 'unchanged',
-    process: (object, depth) => (`${toString(object.key, object.value, depth, ' ')}`),
+    process: (object, depth) => toString(object.key, object.value, depth, ' '),
   },
   {
     check: (object) => object.type === 'changed',
-    process: (object, depth) => (`${toString(object.key, object.newValue, depth, '+')}\n${toString(object.key, object.oldValue, depth, '-')}`),
+    process: (object, depth) => (
+      `${toString(object.key, object.newValue, depth, '+')}\n${toString(object.key, object.oldValue, depth, '-')}`
+    ),
   },
   {
     check: (object) => object.type === 'parrent',
-    process: (object, depth, func) => `${tab(depth + 2)}${object.key}: ${func(object.children, depth + 2)}`,
+    process: (object, depth, func) => (
+      `${tab(depth + 2)}${object.key}: ${func(object.children, depth + 2)}`
+    ),
   },
   {
     check: (object) => object.type === 'added',
-    process: (object, depth) => (`${toString(object.key, object.value, depth, '+')}`),
+    process: (object, depth) => toString(object.key, object.value, depth, '+'),
   },
   {
     check: (object) => object.type === 'deleted',
-    process: (object, depth) => (`${toString(object.key, object.value, depth, '-')}`),
+    process: (object, depth) => toString(object.key, object.value, depth, '-'),
   },
 ];
 
