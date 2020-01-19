@@ -8,7 +8,6 @@ const propertyActions = {
   added: (object, parrentName) => `Property '${parrentName}${object.key}' was added with value: ${stringify(object.value)}`,
   deleted: (object, parrentName) => `Property '${parrentName}${object.key}' was removed`,
   parrent: (object, parrentName, func) => `${func(object.children, `${parrentName}${object.key}.`)}`,
-
 };
 
 const render = (ast, parrentName = '') => ast.map((object) => propertyActions[object.type](object, parrentName, render)).join('\n');
