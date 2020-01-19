@@ -11,7 +11,6 @@ const objectToString = (object, depth) => {
 
 const stringify = (value, depth) => (isObject(value) ? objectToString(value, depth) : value);
 
-
 const propertyActions = [
   {
     check: (object) => object.type === 'unchanged',
