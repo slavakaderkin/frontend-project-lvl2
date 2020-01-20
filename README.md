@@ -4,11 +4,11 @@
 
 The utility finds differences in two configuration files and outputs them in three formats: signs, plain or json. The program works as a CLI application or is used as a library.
 
-## Install
+### Install
 
 `make install`
 
-## Examples 
+### Examples 
 
 * [Comparing json files](https://asciinema.org/a/jbW2x862ipxtj8JnpEYS3KOaK)
 * [Comparing yaml files](https://asciinema.org/a/zQM2FRwOGAyJ4SslFmyTwL2V6)
