@@ -13,5 +13,5 @@ The utility finds differences in two configuration files and outputs them in thr
 * [Comparing json files](https://asciinema.org/a/jbW2x862ipxtj8JnpEYS3KOaK)
 * [Comparing yaml files](https://asciinema.org/a/zQM2FRwOGAyJ4SslFmyTwL2V6)
 * [Comparing ini files](https://asciinema.org/a/r4RumrTB0yIppvYDXZS4XFnbK)
-* [Output plain](ttps://asciinema.org/a/FpA4QOS9ag88fbXHXFE25bRto)
+* [Output plain](https://asciinema.org/a/FpA4QOS9ag88fbXHXFE25bRto)
 * [Output json](https://asciinema.org/a/tMlzdS2io5TwDHHg297COasxJ)
