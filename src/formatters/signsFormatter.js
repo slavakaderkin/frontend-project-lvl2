@@ -13,41 +13,18 @@ const stringify = (value, depth) => (isObject(value) ? objectToString(value, dep
 
 const toString = (key, value, depth, sign) => `${tab(depth + 1)}${sign} ${key}: ${stringify(value, depth)}`;
 
-const propertyActions = [
-  {
-    check: (object) => object.type === 'unchanged',
-    process: (object, depth) => toString(object.key, object.value, depth, ' '),
-  },
-  {
-    check: (object) => object.type === 'changed',
-    process: (object, depth) => (
-      `${toString(object.key, object.newValue, depth, '+')}\n${toString(object.key, object.oldValue, depth, '-')}`
-    ),
-  },
-  {
-    check: (object) => object.type === 'parrent',
-    process: (object, depth, func) => (
-      `${tab(depth + 2)}${object.key}: ${func(object.children, depth + 2)}`
-    ),
-  },
-  {
-    check: (object) => object.type === 'added',
-    process: (object, depth) => toString(object.key, object.value, depth, '+'),
-  },
-  {
-    check: (object) => object.type === 'deleted',
-    process: (object, depth) => toString(object.key, object.value, depth, '-'),
-  },
-];
-
-const getPropertyAction = (object) => propertyActions.find(({ check }) => check(object));
+const propertyActions = {
+  unchanged: (object, depth) => toString(object.key, object.value, depth, ' '),
+  changed: (object, depth) => (
+    `${toString(object.key, object.newValue, depth, '+')}\n${toString(object.key, object.oldValue, depth, '-')}`),
+  parrent: (object, depth, func) => `${tab(depth + 2)}${object.key}: ${func(object.children, depth + 2)}`,
+  added: (object, depth) => toString(object.key, object.value, depth, '+'),
+  deleted: (object, depth) => toString(object.key, object.value, depth, '-'),
+};
 
 const render = (ast, depth = 0) => {
   const result = ast
-    .map((key) => {
-      const { process } = getPropertyAction(key);
-      return process(key, depth, render);
-    })
+    .map((object) => propertyActions[object.type](object, depth, render))
     .join('\n');
 
   return `{\n${result}\n${tab(depth)}}`;
