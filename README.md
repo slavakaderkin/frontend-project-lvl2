@@ -4,7 +4,8 @@
 
 The utility finds differences in two configuration files and outputs them in three formats: signs, plain or json. The program works as a CLI application or is used as a library.
 
-### Install bash
+### Install 
+#### bash
 
 ```
 $ git clone git@github.com:Slavakaderkin/frontend-project-lvl2.git
