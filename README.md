@@ -6,7 +6,9 @@ The utility finds differences in two configuration files and outputs them in thr
 
 ### Install
 
-`make install`
+`
+$ make install
+`
 
 ### Examples 
 
