@@ -22,12 +22,17 @@ const propertyActions = {
   deleted: (object, depth) => toString(object.key, object.value, depth, '-'),
 };
 
-const render = (ast, depth = 0) => {
-  const result = ast
-    .map((object) => propertyActions[object.type](object, depth, render))
-    .join('\n');
+const render = (ast) => {
+  const iter = (data, depth = 0) => {
+    const result = data
+      .map((object) => propertyActions[object.type](object, depth, iter))
+      .join('\n');
 
-  return `{\n${result}\n${tab(depth)}}`;
+    return `{\n${result}\n${tab(depth)}}`;
+  };
+
+  return iter(ast);
 };
+
 
 export default render;

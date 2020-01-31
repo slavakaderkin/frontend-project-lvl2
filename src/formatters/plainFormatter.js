@@ -10,6 +10,9 @@ const propertyActions = {
   parrent: (object, parrentName, func) => `${func(object.children, `${parrentName}${object.key}.`)}`,
 };
 
-const render = (ast, parrentName = '') => ast.map((object) => propertyActions[object.type](object, parrentName, render)).join('\n');
+const render = (ast) => {
+  const iter = (data, parrentName = '') => data.map((object) => propertyActions[object.type](object, parrentName, iter)).join('\n');
+  return iter(ast);
+};
 
 export default render;
